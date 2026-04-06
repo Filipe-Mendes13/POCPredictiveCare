@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Predictive Care</title>
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --blue-btn: rgba(28, 73, 190, 0.96);
+      --blue-btn-dark: rgba(15, 47, 132, 0.98);
+      --overlay-top: rgba(0, 0, 0, 0.12);
+      --overlay-bottom: rgba(0, 0, 0, 0.22);
+      --content-max: 430px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #06184f;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .banner {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background:
+        linear-gradient(to bottom, var(--overlay-top), var(--overlay-bottom)),
+        url("img/fundo.png") no-repeat center center;
+      background-size: cover;
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .safe-area {
+      position: relative;
+      width: min(100%, var(--content-max));
+      height: 100%;
+      margin: 0 auto;
+      padding:
+        max(26px, env(safe-area-inset-top))
+        22px
+        max(24px, env(safe-area-inset-bottom))
+        22px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top {
+      padding-top: 8px;
+    }
+
+    .eyebrow {
+      font-size: clamp(12px, 2.8vw, 14px);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 14px;
+    }
+
+    .title {
+      font-size: clamp(42px, 11vw, 72px);
+      line-height: 0.9;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      max-width: 280px;
+      text-wrap: balance;
+    }
+
+    .middle {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 26px;
+      padding: 18px 0;
+    }
+
+    .card {
+      width: 100%;
+      background: rgba(5, 18, 64, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 24px;
+      padding: 20px 18px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    }
+
+    .lead {
+      text-align: center;
+      font-size: clamp(18px, 4.3vw, 23px);
+      line-height: 1.12;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+
+    .body-text {
+      text-align: center;
+      font-size: clamp(15px, 3.8vw, 19px);
+      line-height: 1.2;
+      font-weight: 800;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+
+    .highlight {
+      text-align: center;
+      font-size: clamp(17px, 4vw, 21px);
+      line-height: 1.12;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+
+    .bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-bottom: 6px;
+    }
+
+    .cta {
+      width: 100%;
+      text-decoration: none;
+      color: var(--white);
+      background: var(--blue-btn);
+      border-radius: 22px;
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      box-shadow: 0 14px 28px rgba(5, 18, 64, 0.28);
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .cta:hover,
+    .cta:focus-visible {
+      background: var(--blue-btn-dark);
+      transform: translateY(-2px);
+    }
+
+    .cta-icon {
+      width: 46px;
+      height: 46px;
+      min-width: 46px;
+      border-radius: 50%;
+      background: rgba(8, 33, 111, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .cta-text-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .cta-label {
+      font-size: clamp(18px, 4vw, 21px);
+      line-height: 1;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .cta-sub {
+      font-size: clamp(11px, 2.8vw, 13px);
+      line-height: 1.1;
+      font-weight: 700;
+      text-transform: uppercase;
+      opacity: 0.85;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 390px) {
+      .safe-area {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .title {
+        max-width: 240px;
+      }
+
+      .card {
+        padding: 18px 15px;
+        border-radius: 20px;
+      }
+
+      .cta {
+        min-height: 68px;
+        border-radius: 20px;
+        padding: 12px 14px;
+      }
+
+      .cta-icon {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        font-size: 18px;
+      }
+    }
+
+    @media (max-height: 740px) {
+      .middle {
+        gap: 18px;
+        padding: 12px 0;
+      }
+
+      .card {
+        padding: 16px 15px;
+      }
+
+      .title {
+        font-size: clamp(38px, 10vw, 58px);
+      }
+
+      .lead {
+        font-size: clamp(16px, 4vw, 20px);
+      }
+
+      .body-text,
+      .highlight {
+        font-size: clamp(14px, 3.4vw, 17px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="banner">
+    <section class="safe-area">
+      <header class="top">
+        <div class="eyebrow">Veículo conectado</div>
+        <h1 class="title">Predictive Care</h1>
+      </header>
+
+      <section class="middle">
+        <div class="card">
+          <p class="lead">
+            Cuidado inteligente para antecipar situações e apoiar você antes que o problema aconteça.
+          </p>
+        </div>
+
+        <div class="card">
+          <p class="body-text">
+            Você está participando de um teste de comunicação do Predictive Care, uma iniciativa que utiliza dados de veículos conectados para antecipar situações e apoiar o cuidado preventivo do veículo.
+          </p>
+        </div>
+
+        <div class="card">
+          <p class="highlight">
+            Sua opinião é essencial para evoluirmos essa experiência.
+          </p>
+        </div>
+      </section>
+
+      <footer class="bottom">
+        <a
+          class="cta"
+          href="https://forms.office.com/Pages/ResponsePage.aspx?id=zdVS2ExyKEGIEv-l2z-FByvBNWPvsf5EllEcMI7PTQlURTJUSjQwVldLMkQ4Uk1RSkdWSzg0UkRGWC4u"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="cta-icon">🔗</div>
+
+          <div class="cta-text-wrap">
+            <div class="cta-label">Acessar formulário</div>
+            <div class="cta-sub">Compartilhe sua opinião</div>
+          </div>
+        </a>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
