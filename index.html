@@ -13,6 +13,7 @@
       --overlay-top: rgba(0, 0, 0, 0.12);
       --overlay-bottom: rgba(0, 0, 0, 0.22);
       --content-max: 430px;
+      --blue-text: #1c49be;
     }
 
     * {
@@ -45,6 +46,26 @@
       background-size: cover;
       color: var(--white);
       overflow: hidden;
+    }
+
+    /* ETIQUETA SUPERIOR DIREITA */
+    .teste-badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: #ffffff;
+      color: var(--blue-text);
+      padding: 10px 16px;
+      border-radius: 18px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+      z-index: 20;
+      max-width: 220px;
+      text-align: center;
+      line-height: 1.2;
     }
 
     .safe-area {
@@ -104,31 +125,26 @@
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
     }
 
-    .lead {
+    .lead,
+    .body-text,
+    .highlight {
       text-align: center;
-      font-size: clamp(18px, 4.3vw, 23px);
-      line-height: 1.12;
-      font-weight: 900;
       text-transform: uppercase;
       text-wrap: balance;
+      font-weight: 900;
+      line-height: 1.15;
+    }
+
+    .lead {
+      font-size: clamp(18px, 4.3vw, 23px);
     }
 
     .body-text {
-      text-align: center;
       font-size: clamp(15px, 3.8vw, 19px);
-      line-height: 1.2;
-      font-weight: 800;
-      text-transform: uppercase;
-      text-wrap: balance;
     }
 
     .highlight {
-      text-align: center;
       font-size: clamp(17px, 4vw, 21px);
-      line-height: 1.12;
-      font-weight: 900;
-      text-transform: uppercase;
-      text-wrap: balance;
     }
 
     .bottom {
@@ -194,6 +210,14 @@
     }
 
     @media (max-width: 390px) {
+      .teste-badge {
+        top: 14px;
+        right: 14px;
+        font-size: 11px;
+        padding: 8px 12px;
+        max-width: 180px;
+      }
+
       .safe-area {
         padding-left: 16px;
         padding-right: 16px;
@@ -213,42 +237,17 @@
         border-radius: 20px;
         padding: 12px 14px;
       }
-
-      .cta-icon {
-        width: 42px;
-        height: 42px;
-        min-width: 42px;
-        font-size: 18px;
-      }
-    }
-
-    @media (max-height: 740px) {
-      .middle {
-        gap: 18px;
-        padding: 12px 0;
-      }
-
-      .card {
-        padding: 16px 15px;
-      }
-
-      .title {
-        font-size: clamp(38px, 10vw, 58px);
-      }
-
-      .lead {
-        font-size: clamp(16px, 4vw, 20px);
-      }
-
-      .body-text,
-      .highlight {
-        font-size: clamp(14px, 3.4vw, 17px);
-      }
     }
   </style>
 </head>
+
 <body>
   <main class="banner">
+
+    <div class="teste-badge">
+      Você está participando de um teste
+    </div>
+
     <section class="safe-area">
       <header class="top">
         <div class="eyebrow">Veículo conectado</div>
