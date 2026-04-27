@@ -13,7 +13,7 @@
       --overlay-top: rgba(0, 0, 0, 0.12);
       --overlay-bottom: rgba(0, 0, 0, 0.22);
       --content-max: 430px;
-      --blue-text: #1c49be;
+      --alert-bg: rgba(255, 255, 255, 0.15); /* Cor de fundo do alerta */
     }
 
     * {
@@ -48,36 +48,13 @@
       overflow: hidden;
     }
 
-    /* ETIQUETA SUPERIOR DIREITA */
-    .teste-badge {
-      position: relative;
-      margin-left: auto;
-      margin-bottom: 18px;
-
-      background: #ffffff;
-      color: #1c49be;
-
-      padding: 10px 14px;
-      border-radius: 18px;
-
-      font-size: 11px;
-      font-weight: 900;
-      text-transform: uppercase;
-      line-height: 1.1;
-      text-align: center;
-
-      width: 170px;
-
-      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-  }
-
     .safe-area {
       position: relative;
       width: min(100%, var(--content-max));
       height: 100%;
       margin: 0 auto;
       padding:
-        max(26px, env(safe-area-inset-top))
+        max(10px, env(safe-area-inset-top))
         22px
         max(24px, env(safe-area-inset-bottom))
         22px;
@@ -85,8 +62,28 @@
       flex-direction: column;
     }
 
+    /* ESTILO DO NOVO ALERTA NO TOPO */
+    .alert-banner {
+      background: var(--alert-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .alert-text {
+      font-size: clamp(10px, 3vw, 12px);
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
     .top {
-      padding-top: 8px;
+      padding-top: 4px;
     }
 
     .eyebrow {
@@ -95,11 +92,11 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       opacity: 0.9;
-      margin-bottom: 14px;
+      margin-bottom: 8px;
     }
 
     .title {
-      font-size: clamp(42px, 11vw, 72px);
+      font-size: clamp(38px, 11vw, 64px); /* Reduzi levemente para caber o alerta */
       line-height: 0.9;
       font-weight: 900;
       letter-spacing: -0.06em;
@@ -113,8 +110,8 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 26px;
-      padding: 18px 0;
+      gap: 20px;
+      padding: 10px 0;
     }
 
     .card {
@@ -123,31 +120,36 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
-      border-radius: 24px;
-      padding: 20px 18px;
+      border-radius: 20px;
+      padding: 18px 16px;
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
     }
 
-    .lead,
-    .body-text,
-    .highlight {
+    .lead {
       text-align: center;
+      font-size: clamp(16px, 4vw, 20px);
+      line-height: 1.12;
+      font-weight: 900;
       text-transform: uppercase;
       text-wrap: balance;
-      font-weight: 900;
-      line-height: 1.15;
-    }
-
-    .lead {
-      font-size: clamp(18px, 4.3vw, 23px);
     }
 
     .body-text {
-      font-size: clamp(15px, 3.8vw, 19px);
+      text-align: center;
+      font-size: clamp(14px, 3.5vw, 17px);
+      line-height: 1.2;
+      font-weight: 800;
+      text-transform: uppercase;
+      text-wrap: balance;
     }
 
     .highlight {
-      font-size: clamp(17px, 4vw, 21px);
+      text-align: center;
+      font-size: clamp(15px, 3.8vw, 19px);
+      line-height: 1.12;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-wrap: balance;
     }
 
     .bottom {
@@ -163,7 +165,7 @@
       color: var(--white);
       background: var(--blue-btn);
       border-radius: 22px;
-      min-height: 74px;
+      min-height: 70px;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -172,22 +174,21 @@
       transition: transform 0.18s ease, background 0.18s ease;
     }
 
-    .cta:hover,
-    .cta:focus-visible {
+    .cta:hover {
       background: var(--blue-btn-dark);
       transform: translateY(-2px);
     }
 
     .cta-icon {
-      width: 46px;
-      height: 46px;
-      min-width: 46px;
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
       border-radius: 50%;
       background: rgba(8, 33, 111, 0.95);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 18px;
     }
 
     .cta-text-wrap {
@@ -197,14 +198,14 @@
     }
 
     .cta-label {
-      font-size: clamp(18px, 4vw, 21px);
+      font-size: clamp(17px, 4vw, 19px);
       line-height: 1;
       font-weight: 900;
       text-transform: uppercase;
     }
 
     .cta-sub {
-      font-size: clamp(11px, 2.8vw, 13px);
+      font-size: clamp(10px, 2.5vw, 12px);
       line-height: 1.1;
       font-weight: 700;
       text-transform: uppercase;
@@ -212,46 +213,22 @@
       letter-spacing: 0.04em;
     }
 
-    @media (max-width: 390px) {
-      .teste-badge {
-        top: 14px;
-        right: 14px;
-        font-size: 11px;
-        padding: 8px 12px;
-        max-width: 180px;
-      }
-
-      .safe-area {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-
-      .title {
-        max-width: 240px;
-      }
-
-      .card {
-        padding: 18px 15px;
-        border-radius: 20px;
-      }
-
-      .cta {
-        min-height: 68px;
-        border-radius: 20px;
-        padding: 12px 14px;
-      }
+    /* Ajustes para telas pequenas */
+    @media (max-height: 700px) {
+      .middle { gap: 12px; }
+      .card { padding: 12px; }
+      .alert-banner { margin-bottom: 10px; padding: 6px; }
     }
   </style>
 </head>
-
 <body>
   <main class="banner">
-
-    <div class="teste-badge">
-      Você está participando de um teste
-    </div>
-
     <section class="safe-area">
+      
+      <div class="alert-banner">
+        <p class="alert-text">Você está participando de um teste de comunicação</p>
+      </div>
+
       <header class="top">
         <div class="eyebrow">Veículo conectado</div>
         <h1 class="title">Predictive Care</h1>
@@ -266,7 +243,7 @@
 
         <div class="card">
           <p class="body-text">
-            Você está participando de um teste de comunicação do Predictive Care, uma iniciativa que utiliza dados de veículos conectados para antecipar situações e apoiar o cuidado preventivo do veículo.
+            Uma iniciativa que utiliza dados de veículos conectados para antecipar situações e apoiar o cuidado preventivo do veículo.
           </p>
         </div>
 
@@ -285,7 +262,6 @@
           rel="noopener noreferrer"
         >
           <div class="cta-icon">🔗</div>
-
           <div class="cta-text-wrap">
             <div class="cta-label">Acessar formulário</div>
             <div class="cta-sub">Compartilhe sua opinião</div>
