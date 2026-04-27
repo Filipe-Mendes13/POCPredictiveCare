@@ -8,12 +8,13 @@
   <style>
     :root {
       --white: #ffffff;
+      --yellow-alert: #ffcc00; /* Amarelo Vibrante */
+      --black-text: #1a1a1a;
       --blue-btn: rgba(28, 73, 190, 0.96);
       --blue-btn-dark: rgba(15, 47, 132, 0.98);
       --overlay-top: rgba(0, 0, 0, 0.12);
       --overlay-bottom: rgba(0, 0, 0, 0.22);
       --content-max: 430px;
-      --alert-bg: rgba(255, 255, 255, 0.15); /* Cor de fundo do alerta */
     }
 
     * {
@@ -54,7 +55,7 @@
       height: 100%;
       margin: 0 auto;
       padding:
-        max(10px, env(safe-area-inset-top))
+        max(15px, env(safe-area-inset-top))
         22px
         max(24px, env(safe-area-inset-bottom))
         22px;
@@ -62,24 +63,23 @@
       flex-direction: column;
     }
 
-    /* ESTILO DO NOVO ALERTA NO TOPO */
+    /* ESTILO DO BALÃO AMARELO NO TOPO */
     .alert-banner {
-      background: var(--alert-bg);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
-      padding: 10px;
+      background: var(--yellow-alert);
+      border-radius: 14px;
+      padding: 12px 10px;
       margin-bottom: 15px;
       text-align: center;
+      box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3); /* Brilho amarelo */
+      border: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .alert-text {
-      font-size: clamp(10px, 3vw, 12px);
+      font-size: clamp(11px, 3.2vw, 13px);
       font-weight: 900;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
-      color: #fff;
+      color: var(--black-text); /* Texto escuro para contraste */
     }
 
     .top {
@@ -96,7 +96,7 @@
     }
 
     .title {
-      font-size: clamp(38px, 11vw, 64px); /* Reduzi levemente para caber o alerta */
+      font-size: clamp(38px, 11vw, 64px);
       line-height: 0.9;
       font-weight: 900;
       letter-spacing: -0.06em;
@@ -110,19 +110,18 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 20px;
+      gap: 18px;
       padding: 10px 0;
     }
 
     .card {
       width: 100%;
-      background: rgba(5, 18, 64, 0.28);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      background: rgba(5, 18, 64, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       border-radius: 20px;
       padding: 18px 16px;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
     }
 
     .lead {
@@ -131,25 +130,14 @@
       line-height: 1.12;
       font-weight: 900;
       text-transform: uppercase;
-      text-wrap: balance;
     }
 
-    .body-text {
+    .body-text, .highlight {
       text-align: center;
       font-size: clamp(14px, 3.5vw, 17px);
       line-height: 1.2;
       font-weight: 800;
       text-transform: uppercase;
-      text-wrap: balance;
-    }
-
-    .highlight {
-      text-align: center;
-      font-size: clamp(15px, 3.8vw, 19px);
-      line-height: 1.12;
-      font-weight: 900;
-      text-transform: uppercase;
-      text-wrap: balance;
     }
 
     .bottom {
@@ -170,13 +158,11 @@
       align-items: center;
       gap: 14px;
       padding: 14px 18px;
-      box-shadow: 0 14px 28px rgba(5, 18, 64, 0.28);
-      transition: transform 0.18s ease, background 0.18s ease;
+      transition: transform 0.18s ease;
     }
 
-    .cta:hover {
-      background: var(--blue-btn-dark);
-      transform: translateY(-2px);
+    .cta:active {
+      transform: scale(0.98);
     }
 
     .cta-icon {
@@ -184,40 +170,29 @@
       height: 42px;
       min-width: 42px;
       border-radius: 50%;
-      background: rgba(8, 33, 111, 0.95);
+      background: rgba(0, 0, 0, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 18px;
     }
 
-    .cta-text-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
     .cta-label {
       font-size: clamp(17px, 4vw, 19px);
-      line-height: 1;
       font-weight: 900;
       text-transform: uppercase;
     }
 
     .cta-sub {
-      font-size: clamp(10px, 2.5vw, 12px);
-      line-height: 1.1;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       opacity: 0.85;
-      letter-spacing: 0.04em;
     }
 
-    /* Ajustes para telas pequenas */
     @media (max-height: 700px) {
-      .middle { gap: 12px; }
-      .card { padding: 12px; }
-      .alert-banner { margin-bottom: 10px; padding: 6px; }
+      .middle { gap: 10px; }
+      .alert-banner { margin-bottom: 10px; padding: 8px; }
     }
   </style>
 </head>
@@ -226,7 +201,7 @@
     <section class="safe-area">
       
       <div class="alert-banner">
-        <p class="alert-text">Você está participando de um teste de comunicação</p>
+        <p class="alert-text">⚠️ Você está participando de um teste de comunicação</p>
       </div>
 
       <header class="top">
@@ -236,31 +211,20 @@
 
       <section class="middle">
         <div class="card">
-          <p class="lead">
-            Cuidado inteligente para antecipar situações e apoiar você antes que o problema aconteça.
-          </p>
+          <p class="lead">Cuidado inteligente para antecipar situações e apoiar você.</p>
         </div>
 
         <div class="card">
-          <p class="body-text">
-            Uma iniciativa que utiliza dados de veículos conectados para antecipar situações e apoiar o cuidado preventivo do veículo.
-          </p>
+          <p class="body-text">Iniciativa baseada em dados para antecipar o cuidado preventivo do seu veículo.</p>
         </div>
 
         <div class="card">
-          <p class="highlight">
-            Sua opinião é essencial para evoluirmos essa experiência.
-          </p>
+          <p class="highlight">Sua opinião é essencial para evoluirmos essa experiência.</p>
         </div>
       </section>
 
       <footer class="bottom">
-        <a
-          class="cta"
-          href="https://forms.office.com/Pages/ResponsePage.aspx?id=zdVS2ExyKEGIEv-l2z-FByvBNWPvsf5EllEcMI7PTQlURTJUSjQwVldLMkQ4Uk1RSkdWSzg0UkRGWC4u"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="cta" href="https://forms.office.com/Pages/ResponsePage.aspx?id=zdVS2ExyKEGIEv-l2z-FByvBNWPvsf5EllEcMI7PTQlURTJUSjQwVldLMkQ4Uk1RSkdWSzg0UkRGWC4u" target="_blank">
           <div class="cta-icon">🔗</div>
           <div class="cta-text-wrap">
             <div class="cta-label">Acessar formulário</div>
